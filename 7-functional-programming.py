@@ -176,12 +176,27 @@ from functools import reduce
 
 my_list2 = [9,8,7]
 
-# Once I've added my_list2, the reduce function lets us do something interesting. I can give it a function, accumulator, that will take 2 params. Remember, the accumulator is going to get called by reduce. Reduce is going to be in charge of giving these 2 params from the data that we give it (my_list2). The first param is going to be what we call the accumulator (or in our case, the 'acc') and the 2nd is the current item from my_list2. 
+# Once I've added my_list2, the reduce function lets us do something interesting. I can give it a function, accumulator, that will take 2 params. 
 
-### VIDEO 2:24 ###
+# Remember, the accumulator is going to get called by reduce. Reduce is going to be in charge of giving these 2 params from the data that we give it (my_list2). The first param is going to be what we call the accumulator (or in our case, the 'acc') and the 2nd is the current 'item' from my_list2. 
+
+# When we first pass my_list2 from the reduce, we'll get the first 'item'. This first 'item' will be the 'item' in the parameter. However, what is the 'acc' initially? In reduce, we have the function, the sequence (in our case is our list), and then the initial. An initial is what the accumulator is going to be. We're giving it an initial value of 0. 
+
+# accumulator defaults to zero if we DON'T give it an initial. The item starts with the first item in the list we supplied.
+
+# We need to remove the list function, because the reduce will produce an 'int' error otherwise. 
 
 def accumulator(acc, item):
-	return
+	print(acc, item)
+	return acc + item
 
 
-print(list(reduce(my_list2)))
+print(reduce(accumulator, my_list2, 0))
+
+# Returns: 
+# 0 9 (a + b = c)
+# 9 8 (c + d = e)
+# 17 7 (e + f = g)
+# 24 (g)
+
+### VIDEO 4:40 ###
