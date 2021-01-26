@@ -118,3 +118,70 @@ print(my_list)
 
 
 #### FILTER ####
+# Filter returns a Boolean value
+
+# If we want to check if a number is odd, we can say item modulo 2. Modulo 2 is going to divide the number by 2 and if it equals zero, then it's determined to be even. To make sure you're checking that it is NOT even, add the not operator into it
+
+# Notice that we're not calling a function because filter accepts a function or what we call a 'function signature' that looks for the memory space to go to and make an action. 
+
+
+filter_list = [1,2,3,4,5,6,7,8,9]
+#this is a pure function since it doesn't modify the original list
+def only_odd(item):
+	return item % 2 != 0 
+
+print(list(filter(only_odd, my_list))) #returns only the odd numbers
+print(list(filter(only_odd, filter_list))) #returns only the odd numbers
+
+# Filter is going to read the data from 'filter_list' and then run the only_odd function on each item in the list. Basically, the 1 in the filter_list becomes 'item' that is passed into the only_odd function. Since 1 is odd, it gets added to the new list that we create. When we get to 2 though, it's going to return false and it will NOT join 1 in the list again. The process repeats until all the Odds are in this filtered list. 
+
+
+#### ZIP ####
+# The zip() kind of works like a zipper (lol). We need 2 lists (or, 2 iterables) and we can zip them together. We can git zip as many iterables as we want, but for our purposes, we'll just use 2.
+
+zip_list = [1,2,3]
+zip_list2 = [10,20,30]
+zip_list3_tuple = (100, 200, 300)
+
+print(list(zip(zip_list, zip_list2))) # Returns [(1, 10), (2, 20), (3, 30)]
+
+# Zip takes the 2 iterables, grabs the first item from each and "zips" them together to make a Tuple. Then it goes to the next item from each and zips those. So forth and so on. 
+
+print(list(zip(zip_list, zip_list3_tuple))) # Returns [(1, 100), (2, 200), (3, 300)]
+# If you have a list in one and a tuple in the other, it does NOT matter. They will still get zipped. 
+
+# Zip is actually a VERY IMPORTANT FUNCTION. Because it's so generic, zip() can be used in so many different things. For example, in a database, if we collected all the usernames from one column in the database & then from another part of the DB we collect all the phone numbers and they were all in the same order, we can combine these into a Tuple using zip() that has the username and phone numbers attached to them & create a whole new data structure. 
+
+username = ['amber', 'francesca', 'nick']
+phone = [8009912421, 8006842598, 8009916543]
+location = ['atlanta', 'venice', 'seattle']
+
+print(list(zip(username, location, phone)))
+# Returns [('amber', 'atlanta', 8009912421), ('francesca', 'venice', 8006842598), ('nick', 'seattle', 8009916543)]
+
+# AGAIN, zip iterates over each one of these lists or data structures and zips them together. And once again, notice that we are not modifying any of our current data. Instead, we create a whole, new one. Zip is a pure function.
+
+
+#### REDUCE ####
+
+# Reduce does NOT come as part of the Python built-in functions. In order to use reduce, we have to import it from functools. Essentially, what's happening here is when we downloaded the Python Interpreter (PIP) and the Python package, we can import something from these functools.
+
+# Functools are what we call a tool belt that we can use for functional tools that comes with the python installation. From there, there is a specific function that we can import. 
+
+# We're saying, 'hey, from functools - from this toolbelt - I want you to import the reduce function so that I can use it in my code.'
+
+# With reduce, we're going to need a few things first. First, we need the function and then we need the sequence (the data). 
+
+from functools import reduce
+
+my_list2 = [9,8,7]
+
+# Once I've added my_list2, the reduce function lets us do something interesting. I can give it a function, accumulator, that will take 2 params. Remember, the accumulator is going to get called by reduce. Reduce is going to be in charge of giving these 2 params from the data that we give it (my_list2). The first param is going to be what we call the accumulator (or in our case, the 'acc') and the 2nd is the current item from my_list2. 
+
+### VIDEO 2:24 ###
+
+def accumulator(acc, item):
+	return
+
+
+print(list(reduce(my_list2)))
